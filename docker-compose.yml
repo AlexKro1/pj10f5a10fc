@@ -1,0 +1,20 @@
+version: '3.7'
+
+networks:
+  monitor-net:
+    driver: bridge
+
+services:
+  app:
+    image: php:8.2-apache
+    container_name: aplicacio
+    volumes:
+      - ./index.html:/var/www/html/index.html
+      - ./codi.php:/var/www/html/codi.php
+    ports:
+      - "80:80"
+    networks:
+      - monitor-net
+
+volumes:
+  prometheus_data:
